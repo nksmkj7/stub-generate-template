@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-# stub-generate-template
-cli tool for generate template from stubs
-=======
 # stub-generates-template
 
 # About
@@ -16,7 +12,7 @@ npm install -D stub-generates-template
 This is the file where all your commands are registered. One should create command.js file at root of your project. If path of command.js is other that root directory, one should pass path to command.js from directory as -f or --stubCommandFile option. Command file should look like below:
 
 <mark>**command.js**</mark>
-```json
+```
 module.exports = {
   commands: [
     {
@@ -79,4 +75,3 @@ Above command will create TestController.js file inside controllers/MyFolder.
 stub-wiz
 ```
 To list all the available commands.
->>>>>>> master
