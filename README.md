@@ -75,3 +75,13 @@ Above command will create TestController.js file inside controllers/MyFolder.
 stub-wiz
 ```
 To list all the available commands.
+
+## Issues
+> If any issue is found, please raise issue in github.
+
+
+## MIT License
+
+```
+Copyright (c) 2021
+```
