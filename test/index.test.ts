@@ -23,14 +23,14 @@ describe("template generate command", function () {
       "stub-wiz make:controller test/controller/TestController --stubCommandFile=test/command.js"
     );
     const fileExist = fs.existsSync(filePath);
-    expect(fileExist).toBeTruthy;
-    if (fileExist) {
+        if (fileExist) {
       fs.rmSync(filePath, { recursive: true });
-    }
+        }
+    expect(fileExist).toBeTruthy();
   });
 
   test("at least one argument must be passed", async () => {
-    await expect(
+     await expect(
       execute("stub-wiz make:service --stubCommandFile=test/command.js")
     ).rejects.toThrow("At least one argument should be passed");
   });
@@ -45,7 +45,7 @@ describe("template generate command", function () {
       "stub-wiz make:controller test/controller/TestController --stubCommandFile=test/command.js"
     );
     const fileExist = fs.existsSync(filePath);
-    expect(fileExist).toBeTruthy;
+    expect(fileExist).toBeTruthy();
     if (fileExist) {
       fs.rmSync(filePath, { recursive: true });
     }
