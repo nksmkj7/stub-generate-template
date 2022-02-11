@@ -50,14 +50,14 @@ commands key consists the array of objects and each object defines the necessary
 
 <mark>**controller.stub**</mark>
 ```js
-export class <%=stub.controllerName>{
+export class <%=stub.controllerName%>{
 
 }
 
 ```
 <u>*stub.controllerName*</u> will eventually replaced by the argument that has been passed in command.
 
-**Note**: `stub.` should always be appended before every arguments and should be wrapped by `<%= >`
+**Note**: `stub.` should always be appended before every arguments and should be wrapped within `<%= %>`
 
 
 # usage (CLI)
