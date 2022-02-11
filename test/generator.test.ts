@@ -4,11 +4,6 @@ import fs from "fs";
 import { commandJson } from "../src/interfaces";
 
 describe("Command registry path", function () {
-  it("should return command.js path of current working directory when custom path is not provided", () => {
-    const commandCwdPaht = path.resolve(process.cwd(), "command.js");
-    expect(generator.getCommandRegistryPath()).toEqual(commandCwdPaht);
-  });
-
   it("should return resolve path of current working directory and given relative path when custom path is provided", () => {
     const mock = jest.spyOn(fs, "existsSync");
     mock.mockReturnValue(true);

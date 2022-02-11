@@ -16,6 +16,7 @@ export const getCommandRegistryPath = (customPath?: string) => {
     customPath = path.resolve(process.cwd(), "command.js");
   } else {
     customPath = path.resolve(process.cwd(), customPath);
+    console.log(customPath, "custom path is");
   }
   if (!existsSync(customPath)) {
     throw new Error("command registry file is missing.");
@@ -68,6 +69,7 @@ export const writeJsFileUsingTemplate = (
   );
 
 export const ensureDirectoryExists = (dir: string) => {
+  console.log("dir is", dir);
   try {
     return statSync(dir);
   } catch (error) {
@@ -81,4 +83,11 @@ export const checkIfFileAlreadyExists = (filePath: string) => {
   } catch (error) {
     return false;
   }
+};
+
+export const targetFilePathWithoutFilename = (targetFilePath: string) => {
+  console.log(targetFilePath, "target file path is");
+  const splitedPath = targetFilePath.split("/");
+  splitedPath.pop();
+  return splitedPath.join("/");
 };

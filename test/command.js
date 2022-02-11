@@ -13,7 +13,7 @@ module.exports = {
       description: "create service",
       stubPath: "./stubs/controller.stub",
       targetFilePath: "./services",
-      args: ["serviceName"],
+      args: [],
     },
   ],
 };

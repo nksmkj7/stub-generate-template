@@ -9,6 +9,7 @@ import {
   checkIfFileAlreadyExists,
   getCommands,
   generateCommandWithArguments,
+  targetFilePathWithoutFilename,
 } from "./generator";
 import { commandJson } from "./interfaces";
 
@@ -27,14 +28,20 @@ export const buildCommands = async () => {
       .command(generateCommandWithArguments(commandJson))
       .description(commandJson.description)
       .action(function (this: any) {
+        if (this.args.length <= 0) {
+          throw new Error("At least one argument should be passed");
+        }
         const sourceFilePath = path.resolve(process.cwd(), stubPath);
         const fileExtension = commandJson.fileExtension ?? ".js";
         const targetFilePath = path.join(
-          path.resolve(process.cwd(), commandJson.targetFilePath)
+          process.cwd(),
+          commandJson.targetFilePath
         );
         const argumentToPass: { [index: string]: any } = {};
-        for (const arg of commandJson.args) {
-          argumentToPass[arg] = this.args[commandJson.args.indexOf(arg)];
+        if (commandJson.args && commandJson.args.length >= 0) {
+          for (const arg of commandJson.args) {
+            argumentToPass[arg] = this.args[commandJson.args.indexOf(arg)];
+          }
         }
         if (
           checkIfFileAlreadyExists(
@@ -43,7 +50,11 @@ export const buildCommands = async () => {
         ) {
           throw new Error(`${this.args[0]}${fileExtension} is already exist`);
         }
-        ensureDirectoryExists(targetFilePath);
+        ensureDirectoryExists(
+          targetFilePathWithoutFilename(
+            path.join(targetFilePath, `${this.args[0]}`)
+          )
+        );
         writeJsFileUsingTemplate(
           path.join(targetFilePath, `${this.args[0]}${fileExtension}`),
           sourceFilePath,
@@ -54,5 +65,6 @@ export const buildCommands = async () => {
         );
       });
   });
-  program.parseAsync(process.argv);
+  return program.parseAsync(process.argv);
 };
+buildCommands();
