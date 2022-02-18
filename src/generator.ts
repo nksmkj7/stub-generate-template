@@ -84,7 +84,7 @@ export const checkIfFileAlreadyExists = (filePath: string) => {
 };
 
 export const targetFilePathWithoutFilename = (targetFilePath: string) => {
-  const splitedPath = targetFilePath.split("/");
+  const splitedPath = targetFilePath.split(path.sep);
   splitedPath.pop();
-  return splitedPath.join("/");
+  return splitedPath.join(path.sep);
 };
